@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOHUB</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2e0;
+            
+            height: 100vh; /* Set body height to full viewport */
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #a0c67f;
+            padding: 15px;
+            
+        }
+
+        .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 5px solid; /* Define a solid border first */
+    border-radius: 2px;
+    border-image: linear-gradient(to left, #ffffff 65%, transparent 50%) 1;
+    padding: 2px 0 10px 0;
+}
+
+        .navbar .logo {
+            font-size: 50px;
+            font-weight: bold;
+            color: #113002;
+            /* text-decoration: none; */
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            margin-bottom: 15px; /* Add margin to position above the white line */
+            margin-left: 250px;
+        
+        }
+
+        .navbar .nav-links li {
+            margin-right: 50px;
+            
+        }
+
+        .navbar .nav-links li:hover{
+            text-decoration: underline;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #113002;
+            font-weight: bold;
+            
+        }
+
+        .navbar .login-btn {
+            background-color: #d9ff75;
+            color: #1a3b24;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+            margin-right: 10px;
+        }
+
+        .navbar .login-btn:hover{
+            background-color: #113002;
+            color:#d9ff75;
+        }
+
+        /* Main Content */
+        .hero {
+            background-color: #1a3b24;
+            flex-grow: 1; /* Ensures the hero section takes up remaining space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            max-height: 100%; /* Ensure image fits within the viewport */
+            height: 85vh;
+            width: 100vw;
+            
+            
+        }
+
+        
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+
+            .navbar .login-btn {
+                display: none;
+            }
+        }
+
+        /* MAIN-2 */
+        .main-2{
+            font-family: Arial, sans-serif;
+            background-color: #254F2A;
+        
+        }
+
+
+        h2 {
+            text-align: center;
+            color: #fff;
+            padding: 100px 0 100px 0;
+            font-size: 36px;
+        }
+
+        /* Container for Cards */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 0 20px 20px 20px;
+        }
+
+        /* Individual Card Styles */
+        .card {
+            background-color: white;
+            padding: 50px;
+            border-radius: 15px;
+            width: 400px;
+            height: 400px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin: 0 150px 50px 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+
+        .card:hover {
+            transform: scale(1.05) translateY(-5px); /* Enlarges the card and lifts it */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+
+        .card img {
+            width: 60px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Button Styles */
+        .card .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* .card:hover{
+            tra
+        } */
+
+        .btn-blue {
+            background-color: #00a4e4;
+        }
+
+        .btn-orange {
+            background-color: #ffb100;
+        }
+
+        
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+
+
+
+         /* Main-3 */
+         .hero-3 {
+            background-color: #1a3b24;
+            flex-grow: 1; /* Ensures the hero section takes up remaining space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .hero-image-3{
+            position: relative;
+        }
+
+        .hero-image-3 img {
+            max-width: 100%;
+            max-height: 100%; /* Ensure image fits within the viewport */
+            height: 105vh;
+            width: 100vw;
+            
+        }
+
+
+        .hero-image-3 .click-here-btn {
+            position: absolute;
+            top: 64.4%;
+            left: 82.7%;
+            transform: translate(-50%, -50%);
+            background-color: #d9ff75;
+            color: #1a3b24;
+            font-size: 26px;
+            padding: 13px 44px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .click-here-btn:hover{
+            background-color: #113002;
+            color:#d9ff75;
+        }
+
+
+        /* Main-4 */
+        .hero-4 {
+            background-color: #1a3b24;
+            flex-grow: 1; /* Ensures the hero section takes up remaining space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        
+
+        .hero-image-4 img {
+            max-width: 100%;
+            max-height: 100%; /* Ensure image fits within the viewport */
+            height: 80vh;
+            width: 100vw;
+            
+        }
+
+
+        /* Footer */
+        .footer {
+            background-color: #ffffff;
+            padding: 20px; 
+        }
+
+        .footer-nav{
+            color:black;
+            border-top: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            font-size: large;
+        }
+
+        .footer-nav-links{
+            text-decoration: none;
+
+        }
+
+        .footer .footer-nav-links {
+            list-style: none;
+            display: flex;
+            
+        }
+
+        .footer .footer-nav-links li {
+            margin-right: 50px;
+            
+        }
+
+        .footer .footer-nav-links li:hover{
+            text-decoration: underline;
+        }
+
+        .footer .footer-nav-links a {
+            text-decoration: none;
+            color: #113002;
+            font-weight: bold;
+            
+        }
+        a {
+        color: black;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="/main.html">ECOHUB</a></div>
+            <ul class="nav-links">
+                <li><a href="education.html">Resources</a></li>
+                <li><a href="ecommerce.html">E-Commerce</a></li>
+                <li><a href="cfc.html">Carbon Calculator</a></li>
+                <li><a href="maintenance.html">Maintanence</a></li>
+                <li><a href="donate.html">Donate</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="Images\5.png" alt="Ecohub Image">
+        </div>
+    </section>
+
+
+    <!-- Main - 2 -->
+    <section class="main-2">
+        <h2>Here’s How Can You Make A Difference?</h2>
+
+    <!-- Cards Section -->
+    <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="Images\calc png.png" alt="Measure Icon">
+            <h3 style="color: #00a4e4;">Measure</h3>
+            <p>Use our carbon footprint calculators for individuals, small businesses, and societies.</p>
+            <a href="/cfc.html" class="btn btn-blue">Find out more</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="Images\Arrow.png" alt="Reduce Icon">
+            <br>
+            <h3 style="color: #ffb100;">Reduce</h3>
+            <br>
+            <p>Learn how to reduce your carbon footprint.</p>
+            <br><br>
+            <a href="/education.html" class="btn btn-orange">Find out more</a>
+        </div>
+    </div>
+    </section>
+
+<!-- Main - 3 -->
+    <section class="hero-3"></section>
+        <div class="hero-image-3">
+            <img src="Images\3.1.png" alt="Ecohub Image">
+            <a href="cfc.html" class="click-here-btn">Click here</a>
+        </div>
+    </section>
+
+
+    <!-- Main - 4 -->
+    <section class="hero-4">
+        <div class="hero-image-4">
+            <img src="Images\4.jpg" alt="Ecohub Image">
+            <div class="footer">
+                <div class="footer-nav">
+                    <ul class="footer-nav-links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Annual Reports</a></li>
+                        <li><a href="#">Donate</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <script></script>
+</body>
+</html>

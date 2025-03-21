@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO-Hub Maintenance Booking</title>
+
+     <!-- Bootstrap CSS for styling and layout -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Custom CSS -->
+     <!-- <link rel="stylesheet" href="sidebar.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #eef2f7;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #2E8B57;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .service-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .service-card {
+            width: 30%;
+            min-width: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+        }
+        .service-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        .service-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .service-details {
+            padding: 15px;
+        }
+        .service-details h5 {
+            color: #264653;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .service-details p {
+            color: #555;
+            font-size: 1em;
+        }
+        .book-btn {
+            width: 100%;
+            margin-top: 10px;
+            background-color: #2E8B57;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .book-btn:hover {
+            background-color: #20a158;
+        }
+
+        /* Sidebar Styling */
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            background-color: #2E8B57;
+            padding-top: 20px;
+        }
+
+        #sidebar h3 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #sidebar-nav .nav-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #343a40;
+        }
+
+        #sidebar-nav .nav-link {
+            color: #adb5bd;
+            transition: color 0.3s;
+        }
+
+        #sidebar-nav .nav-link:hover,
+        #sidebar-nav .nav-link.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding-left: 10px;
+        }
+
+        /* Content Styling */
+        #content {
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
+
+        .content-section {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2E8B57;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="d-flex">
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="p-4">
+        <h3 class="text-light">EcoHub</h3>
+        <ul id="sidebar-nav" class="nav flex-column">
+            <li class="nav-item mb-3"><a href="education.html" class="nav-link text-light ">Education</a></li>
+            <li class="nav-item mb-3"><a href="source.html" class="nav-link text-light">Source</a></li>
+            <li class="nav-item mb-3"><a href="dashboard.html" class="nav-link text-light">Dashboard</a></li>
+            <li class="nav-item mb-3"><a href="bill.html" class="nav-link text-light">Bill</a></li>
+            <li class="nav-item mb-3"><a href="analysis.html" class="nav-link text-light">Analysis</a></li>
+            <li class="nav-item mb-3"><a href="maintainance.html" class="nav-link text-light active">Maintenance</a></li>
+            <li class="nav-item mb-3"><a href="cfc.html" class="nav-link text-light">Carbon Footprint</a></li>
+            <li class="nav-item mb-3"><a href="donate.html" class="nav-link text-light">Donate</a></li>
+            <li class="nav-item mb-3"><a href="ecommerce.html" class="nav-link text-light">E-commerce</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div id="content" class="p-4 flex-grow-1">
+    <h1>Maintenance Booking</h1>
+
+    <div class="service-container">
+        <div class="service-card">
+            <img src="https://solarpower.guide/solar-energy-insights/images/solar-panel-cleaning.jpg" alt="Solar Cleaning">
+            <div class="service-details">
+                <h5>Solar Cleaning Crew</h5>
+                <p>Expert solar panel cleaning services.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Solar Cleaning Crew')">Book Now</button>
+            </div>
+        </div>
+        <div class="service-card">
+            <img src="https://tse3.mm.bing.net/th?id=OIP._GAfAejgYOGhEKtvEN1GSwHaE8&pid=Api&P=0&h=180" alt="Battery Maintenance">
+            <div class="service-details">
+                <h5>Battery Maintenance</h5>
+                <p>Reliable battery maintenance and checks.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Battery Maintenance')">Book Now</button>
+            </div>
+        </div>
+        <div class="service-card">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.DPj6S2NLe9nhh_EpgH0YXAHaE7&pid=Api&P=0&h=180" alt="Wiring Maintenance">
+            <div class="service-details">
+                <h5>Wiring Expert</h5>
+                <p>Professional wiring and electrical maintenance.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Wiring Expert')">Book Now</button>
+            </div>
+        </div>
+        <div class="service-card">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.vIoqnX9XGixSaxrnD22XTwHaE8&pid=Api&P=0&h=180" alt="Inverter Service">
+            <div class="service-details">
+                <h5>Inverter Service</h5>
+                <p>Comprehensive inverter diagnostics and repair.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Inverter Service')">Book Now</button>
+            </div>
+        </div>
+        <div class="service-card">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.BCLmemhsn4gVZLMCvMEa1wHaE6&pid=Api&P=0&h=180" alt="Energy Audit">
+            <div class="service-details">
+                <h5>Energy Audit</h5>
+                <p>Comprehensive energy audits to optimize usage.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Energy Audit')">Book Now</button>
+            </div>
+        </div>
+        <!-- New service card for Thermal Inspection -->
+        <div class="service-card">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.KwHnDzH_rnv9X68QdzpymwHaEK&pid=Api&P=0&h=180" alt="Inspection services">
+            <div class="service-details">
+                <h5>Inspection Services</h5>
+                <p>Regular inspections to ensure optimal performance.</p>
+                <button class="btn book-btn" onclick="showDatePicker('Inspection Services')">Book Now</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Footer Section -->
+<footer>
+    <div class="container">
+        <p>&copy; 2024 EcoHub - All Rights Reserved</p>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    let selectedService = "";
+    const unavailableDates = ['2024-11-01', '2024-11-02', '2024-11-03'];
+
+    function showDatePicker(service) {
+        selectedService = service;
+        const today = new Date();
+        const minDate = today.toISOString().split('T')[0];
+       
+        Swal.fire({
+            title: `Booking for: ${service}`,
+            html: `<label for="datePicker">Select a date:</label>
+                   <input type="date" id="datePicker" class="form-control" style="width: 100%; margin-top: 10px;" min="${minDate}">`,
+            showCancelButton: true,
+            confirmButtonText: 'Confirm Booking',
+            confirmButtonColor: '#2E8B57', // Set to green
+            cancelButtonColor: '#d33',
+            preConfirm: () => {
+                const datePicker = document.getElementById('datePicker');
+                const selectedDate = datePicker.value;
+
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date.');
+                    return false;
+                }
+
+                if (unavailableDates.includes(selectedDate)) {
+                    Swal.showValidationMessage('Selected date is unavailable for booking. Please select another date.');
+                    return false;
+                }
+
+                return selectedDate;
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Booking Confirmed',
+                    `You have booked a ${selectedService} on ${result.value}.
+                    Our team will contact you soon`,
+                    
+                    'success'
+                );
+            }
+        });
+    }
+</script>
+
+
+
+</body>
+</html>

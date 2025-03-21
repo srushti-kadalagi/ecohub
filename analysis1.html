@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eco-Hub Dashboard</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e0f0e0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            background-color: #2e8b57;
+            padding-top: 20px;
+        }
+        #sidebar h3 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #fff;
+        }
+        #sidebar-nav .nav-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #343a40;
+        }
+        #sidebar-nav .nav-link {
+            color: #adb5bd;
+            transition: color 0.3s;
+        }
+        #sidebar-nav .nav-link:hover,
+        #sidebar-nav .nav-link.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding-left: 10px;
+        }
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 250px; /* Space for sidebar */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            visibility: hidden; /* Hide initially */
+        }
+        .card {
+            background-color: #3cb371;
+            border-radius: 10px;
+            padding: 15px;
+            width: 30%;
+            color: white;
+        }
+        .earning-report {
+            background-color: #3cb371;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            visibility: hidden; /* Hide initially */
+        }
+        .chart {
+            height: 300px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        a {
+            color: black;
+            font-weight: bold;
+        }
+        #monthDropdown, #yearDropdown {
+            background-color: #2e8b57;
+            color: white;
+        }
+        .notification {
+            display: none; /* Hide initially */
+            background-color: #ffcc00;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav id="sidebar" class="p-4">
+        <h3 class="text-light"><a href="main.html">ECOHUB</a></h3>
+        <ul id="sidebar-nav" class="nav flex-column">
+            <li class="nav-item mb-3">
+                <a href="analysis.html" class="nav-link text-light active">Analysis</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="source.html" class="nav-link text-light">Source</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="bill.html" class="nav-link text-light">Bill</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="education.html" class="nav-link text-light ">Education</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="maintenance.html" class="nav-link text-light ">Maintenance</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="cfc.html" class="nav-link text-light">Carbon Footprint</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a href="ecommerce.html" class="nav-link text-light">E-commerce</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="main-content">
+
+        <div class="notification" id="notification">
+            ⚠️ Power generated is below the expected value for this month!
+        </div>
+
+        <br>
+
+        <select id="monthDropdown" class="form-select" style="width: 150px;">
+            <option value="" disabled selected>Select Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+        <br>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Power Generated</h3>
+                <p>20.6MW</p>
+                <canvas id="generatedChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Power Consumed</h3>
+                <p>11.3MW</p>
+                <canvas id="consumedChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Difference</h3>
+                <p>9.3MW</p>
+                <canvas id="differenceChart"></canvas>
+            </div>
+        </div>
+
+        <select id="yearDropdown" class="form-select" style="width: 150px;">
+            <option value="" disabled selected>Select Year</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+        </select>
+        <br>
+
+        <div class="earning-report">
+            <h3>Earning Report</h3>
+            <p>Monthly Earning Overview</p>
+            <canvas id="yearlyChart" class="chart"></canvas>
+            <p>Your Information compared to previous month</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <h4>Earning</h4>
+                    <p id="earningValue">Rs. 15,260</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Profit</h4>
+                    <p id="profitValue">Rs. 10,150</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Expenses</h4>
+                    <p id="expenseValue">Rs. 5,110</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="notification" id="notification">
+            ⚠️ Power generated is below the expected value for this month!
+        </div> -->
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const monthlyData = {
+        January:  { generated: 245, consumed: 365, earning: 13000, profit: 10000, expense: 3000 },
+        February: { generated: 305, consumed: 360, earning: 15000, profit: 12000, expense: 3000 },
+        March: { generated: 440, consumed: 310, earning: 14000, profit: 11000, expense: 3000 },
+        April: { generated: 590, consumed: 360, earning: 13500, profit: 10500, expense: 3000 },
+        May: { generated: 720, consumed: 520, earning: 16000, profit: 12500, expense: 3500 },
+        June: { generated: 462, consumed: 380, earning: 18000, profit: 14500, expense: 3500 },
+        July: { generated: 445, consumed: 325, earning: 19000, profit: 15000, expense: 4000 },
+        August: { generated: 390, consumed: 345, earning: 21000, profit: 16000, expense: 5000 },
+        September: { generated: 410, consumed: 390, earning: 22000, profit: 16500, expense: 5500 },
+        October: { generated: 310, consumed: 335, earning: 23000, profit: 17000, expense: 6000 },
+        November: { generated: 350, consumed: 360, earning: 24000, profit: 18000, expense: 7000 },
+        December: { generated: 250, consumed: 300, earning: 25000, profit: 19000, expense: 8000 }
+    };
+
+    const yearlyData = {
+        2022: { 
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [
+                { generated: 310, consumed: 320, earning: 12000, profit: 8000, expense: 4000 },
+                { generated: 500, consumed: 400, earning: 15000, profit: 10000, expense: 5000 },
+                { generated: 550, consumed: 380, earning: 13000, profit: 9000, expense: 4000 },
+                { generated: 600, consumed: 400, earning: 14000, profit: 9500, expense: 4500 },
+                { generated: 700, consumed: 380, earning: 16000, profit: 11000, expense: 5000 },
+                { generated: 360, consumed: 350, earning: 18000, profit: 13000, expense: 5000 },
+                { generated: 350, consumed: 370, earning: 20000, profit: 15000, expense: 5000 },
+                { generated: 380, consumed: 400, earning: 22000, profit: 16000, expense: 6000 },
+                { generated: 410, consumed: 390, earning: 24000, profit: 17000, expense: 7000 },
+                { generated: 390, consumed: 410, earning: 21000, profit: 14000, expense: 7000 },
+                { generated: 460, consumed: 370, earning: 20000, profit: 13000, expense: 7000 },
+                { generated: 425, consumed: 365, earning: 17000, profit: 11000, expense: 6000 }
+            ]
+        },
+        2023: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [
+                { generated: 295, consumed: 325, earning: 13000, profit: 10000, expense: 3000 },
+                { generated: 345, consumed: 320, earning: 15000, profit: 12000, expense: 3000 },
+                { generated: 480, consumed: 360, earning: 14000, profit: 11000, expense: 3000 },
+                { generated: 550, consumed: 395, earning: 13500, profit: 10500, expense: 3000 },
+                { generated: 683, consumed: 420, earning: 16000, profit: 12500, expense: 3500 },
+                { generated: 412, consumed: 371, earning: 18000, profit: 14500, expense: 3500 },
+                { generated: 405, consumed: 385, earning: 19000, profit: 15000, expense: 4000 },
+                { generated: 360, consumed: 395, earning: 21000, profit: 16000, expense: 5000 },
+                { generated: 348, consumed: 360, earning: 23000, profit: 17000, expense: 6000 },
+                { generated: 420, consumed: 325, earning: 24000, profit: 18000, expense: 6000 },
+                { generated: 346, consumed: 368, earning: 22000, profit: 16000, expense: 6000 },
+                { generated: 325, consumed: 375, earning: 20000, profit: 15000, expense: 5000 }
+            ]
+        },
+        2024: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [
+                { generated: 245, consumed: 365, earning: 13000, profit: 10000, expense: 3000 },
+                { generated: 305, consumed: 360, earning: 15000, profit: 12000, expense: 3000 },
+                { generated: 440, consumed: 310, earning: 14000, profit: 11000, expense: 3000 },
+                { generated: 590, consumed: 360, earning: 13500, profit: 10500, expense: 3000 },
+                { generated: 720, consumed: 520, earning: 16000, profit: 12500, expense: 3500 },
+                { generated: 462, consumed: 380, earning: 18000, profit: 14500, expense: 3500 },
+                { generated: 445, consumed: 325, earning: 19000, profit: 15000, expense: 4000 },
+                { generated: 390, consumed: 345, earning: 21000, profit: 16000, expense: 5000 },
+                { generated: 338, consumed: 340, earning: 23000, profit: 17000, expense: 6000 },
+                { generated: 0, consumed: 0, earning: 0, profit: 0, expense: 0 },
+                { generated: 0, consumed: 0, earning: 0, profit: 0, expense: 0},
+                { generated: 0, consumed: 0, earning: 0, profit: 0, expense: 0}
+            ]
+        }
+    };
+
+    const expectedProduction = {
+        January: 300,
+        February: 300,
+        March: 500,
+        April: 600,
+        May: 700,
+        June: 400,
+        July: 400,
+        August: 400,
+        September: 400,
+        October: 300,
+        November: 300,
+        December: 300
+    };
+
+    let yearlyChart, generatedChart, consumedChart, differenceChart;
+
+    function updateYearlyChart(year) {
+        const data = yearlyData[year];
+        if (!data) return;
+
+        const yearlyChartContainer = document.querySelector('.earning-report');
+        yearlyChartContainer.style.visibility = 'visible'; // Show the container
+
+        if (yearlyChart) yearlyChart.destroy();
+
+        const ctx = document.getElementById('yearlyChart').getContext('2d');
+        yearlyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [
+                    {
+                        label: 'Power Generated',
+                        data: data.data.map(d => d.generated),
+                        backgroundColor: '#1A5319'
+                    },
+                    {
+                        label: 'Power Consumed',
+                        data: data.data.map(d => d.consumed),
+                        backgroundColor: '#C72B2B'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Update the statistics based on the selected year data
+        const totalEarning = data.data.reduce((acc, val) => acc + val.earning, 0);
+        const totalProfit = data.data.reduce((acc, val) => acc + val.profit, 0);
+        const totalExpense = data.data.reduce((acc, val) => acc + val.expense, 0);
+
+        document.getElementById('earningValue').textContent = `Rs. ${totalEarning}`;
+        document.getElementById('profitValue').textContent = `Rs. ${totalProfit}`;
+        document.getElementById('expenseValue').textContent = `Rs. ${totalExpense}`;
+    }
+
+    function updateMonthlyCharts(month) {
+        const data = monthlyData[month];
+        if (!data) return;
+
+        const cardContainer = document.querySelector('.cards');
+        cardContainer.style.visibility = 'visible'; // Show the container
+
+        const generatedCtx = document.getElementById('generatedChart').getContext('2d');
+        const consumedCtx = document.getElementById('consumedChart').getContext('2d');
+        const differenceCtx = document.getElementById('differenceChart').getContext('2d');
+
+        if (generatedChart) generatedChart.destroy();
+        if (consumedChart) consumedChart.destroy();
+        if (differenceChart) differenceChart.destroy();
+
+        generatedChart = new Chart(generatedCtx, {
+            type: 'bar',
+            data: {
+                labels: [month],
+                datasets: [{
+                    label: 'Power Generated (MW)',
+                    data: [data.generated],
+                    backgroundColor: '#1A5319'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        consumedChart = new Chart(consumedCtx, {
+            type: 'bar',
+            data: {
+                labels: [month],
+                datasets: [{
+                    label: 'Power Consumed (MW)',
+                    data: [data.consumed],
+                    backgroundColor: '#C72B2B'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        differenceChart = new Chart(differenceCtx, {
+            type: 'bar',
+            data: {
+                labels: [month],
+                datasets: [{
+                    label: 'Power Difference (MW)',
+                    data: [data.generated - data.consumed],
+                    backgroundColor: '#FFC300'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Check production against expected value and show notification if necessary
+        const expectedValue = expectedProduction[month];
+        if (data.generated < expectedValue) {
+            showNotification();
+        } else {
+            hideNotification();
+        }
+
+        // Update the statistics based on the selected month data
+        document.getElementById('earningValue').textContent = `Rs. ${data.earning}`;
+        document.getElementById('profitValue').textContent = `Rs. ${data.profit}`;
+        document.getElementById('expenseValue').textContent = `Rs. ${data.expense}`;
+    }
+
+    document.getElementById('monthDropdown').addEventListener('change', function () {
+        const selectedMonth = this.value;
+        updateMonthlyCharts(selectedMonth);
+    });
+
+    document.getElementById('yearDropdown').addEventListener('change', function () {
+        const selectedYear = this.value;
+        updateYearlyChart(selectedYear);
+    });
+
+    function showNotification() {
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block'; // Show notification
+    }
+
+    function hideNotification() {
+        const notification = document.getElementById('notification');
+        notification.style.display = 'none'; // Hide notification
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate to EcoHub</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        /* Body and Font Styling */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            height: 100vh; /* Full height for centering */
+        }
+
+        /* Sidebar Styling */
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            background-color: #2E8B57;
+            padding-top: 20px;
+        }
+
+        #sidebar h3 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #sidebar-nav .nav-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #343a40;
+        }
+
+        #sidebar-nav .nav-link {
+            color: #adb5bd;
+            transition: color 0.3s;
+        }
+
+        #sidebar-nav .nav-link:hover,
+        #sidebar-nav .nav-link.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding-left: 10px;
+        }
+
+        /* Content Area */
+        #content {
+            margin-left: 250px;
+            height: 100vh; /* Full height for centering */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+        }
+
+        /* Donation Container Styling */
+        .donation-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 450px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in;
+            animation: zoomIn 0.6s ease-in;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        /* Leaderboard */
+
+        /* Leaderboard Styling */
+.leaderboard {
+    width: 450px; /* Increase width */
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin-left: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    animation: slideInRight 1.5s ease-out;
+}
+
+/* Leaderboard Item Styling */
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0; /* Increase padding for more space */
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    font-size: 18px; /* Make the text larger */
+    font-weight: 500;
+}
+
+
+
+        /* .leaderboard {
+            width: 350px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            margin-left: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            animation: slideInRight 1.5s ease-out;
+        } */
+
+        .leaderboard h3 {
+            color: #2E8B57;
+            text-align: center;
+        }
+
+        /* .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        } */
+
+        .leaderboard-item.badge {
+            font-weight: bold;
+            color: #2E8B57;
+        }
+
+        .leaderboard-item:hover {
+            background-color: #f1f1f1;
+            transform: scale(1.02);
+        }
+
+        .badge-icon {
+            background-color: gold;
+            border-radius: 50%;
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes celebration {
+            0% { transform: scale(1); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        .celebration-modal .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: celebration 2s ease-in;
+        }
+
+        .celebration-modal h5 {
+            font-size: 24px;
+            color: #2E8B57;
+        }
+
+        .celebration-modal p {
+            font-size: 16px;
+        }
+
+       /* Sustainability Quote Styling */
+.sustainability-quote {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2E8B57; /* Green color to match theme */
+    padding: 20px;
+    margin-top: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="p-4">
+        <h3 class="text-light">EcoHub</h3>
+        <ul id="sidebar-nav" class="nav flex-column">
+            <li class="nav-item mb-3"><a href="education.html" class="nav-link text-light">Education</a></li>
+            <li class="nav-item mb-3"><a href="source.html" class="nav-link text-light">Source</a></li>
+            <li class="nav-item mb-3"><a href="dashboard.html" class="nav-link text-light">Dashboard</a></li>
+            <li class="nav-item mb-3"><a href="bill.html" class="nav-link text-light">Bill</a></li>
+            <li class="nav-item mb-3"><a href="analysis.html" class="nav-link text-light">Analysis</a></li>
+            <li class="nav-item mb-3"><a href="cfc.html" class="nav-link text-light">Carbon Footprint</a></li>
+            <li class="nav-item mb-3"><a href="ecommerce.html" class="nav-link text-light">E-commerce</a></li>
+            <li class="nav-item mb-3"><a href="ev.html" class="nav-link text-light">EV Charging Center</a></li>
+            <li class="nav-item mb-3"><a href="donate.html" class="nav-link text-light active">Donate</a></li>
+        </ul>
+    </nav>
+
+   
+    
+
+    <!-- Content Area -->
+    <div id="content">
+        <div class="container">
+            <header class="text-center my-4">
+                <h2 class="sustainability-quote">"Your contribution today fuels a greener tomorrow. Join us in making a sustainable difference."</h2>
+            </header>
+            <!-- Donation Containers -->
+            <div class="donation-container">
+                <!-- Energy Donation Box -->
+                <div class="card border-success mb-4 d-flex flex-column justify-content-center align-items-center">
+                    <div class="card-body">
+                        <h2 class="card-title text-success">Donate Energy</h2>
+                        <p class="card-text">Help us harness renewable energy sources by donating energy.</p>
+                        <button class="btn btn-success btn-lg" id="donateEnergyBtn">Donate Energy</button>
+                    </div>
+                </div>
+
+                <!-- Money Donation Box -->
+                <div class="card border-primary mb-4 d-flex flex-column justify-content-center align-items-center">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">Donate Money</h2>
+                        <p class="card-text">Your contributions help us grow and support our community initiatives.</p>
+                        <button class="btn btn-primary btn-lg" id="donateMoneyBtn">Donate Money</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <h3>Top Donors</h3>
+            <div class="leaderboard-item badge">
+                <span><span class="badge-icon">🥇</span> Alice</span>
+                <span>₹10,000</span>
+            </div>
+            <div class="leaderboard-item badge">
+                <span><span class="badge-icon">🥈</span> Bob</span>
+                <span>₹8,000</span>
+            </div>
+            <div class="leaderboard-item badge">
+                <span><span class="badge-icon">🥉</span> Carol</span>
+                <span>₹5,000</span>
+            </div>
+            <div class="leaderboard-item badge">
+                <span><span class="badge-icon">🏅</span> Dave</span>
+                <span>₹3,000</span>
+            </div>
+            <div class="leaderboard-item badge">
+                <span><span class="badge-icon">🏅</span> Eve</span>
+                <span>₹2,000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Donation -->
+    <!-- Energy Donation Modal -->
+    <div class="modal fade" id="energyDonationModal" tabindex="-1" role="dialog" aria-labelledby="energyDonationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="energyDonationModalLabel">Energy Donation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Energy Donation Form -->
+                    <form id="energyDonationForm">
+                        <div class="form-group">
+                            <label for="energyAmount">Enter Energy Amount (kWh)</label>
+                            <input type="number" class="form-control" id="energyAmount" placeholder="Energy in kWh" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit Donation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Money Donation Modal -->
+    <div class="modal fade" id="moneyDonationModal" tabindex="-1" role="dialog" aria-labelledby="moneyDonationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="moneyDonationModalLabel">Money Donation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Money Donation Form -->
+                    <form id="moneyDonationForm">
+                        <div class="form-group">
+                            <label for="moneyAmount">Enter Donation Amount (₹)</label>
+                            <input type="number" class="form-control" id="moneyAmount" placeholder="Amount in ₹" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Donation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Modal -->
+<div class="modal fade celebration-modal" id="celebrationModal" tabindex="-1" role="dialog" aria-labelledby="celebrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document"> <!-- Added "modal-lg" for larger size -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="celebrationModalLabel">Congratulations!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center"> <!-- Center the text -->
+                <h5 class="display-4 text-success">Thank you for your generous donation!</h5> <!-- Made text larger -->
+                <p class="lead">Your support helps us in our mission to create a sustainable future.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Donation Modal Controls
+        document.getElementById('donateEnergyBtn').onclick = function() {
+            $('#energyDonationModal').modal('show');
+        };
+
+        document.getElementById('donateMoneyBtn').onclick = function() {
+            $('#moneyDonationModal').modal('show');
+        };
+
+        // Handle Energy Donation Form Submission
+        document.getElementById('energyDonationForm').onsubmit = function(e) {
+            e.preventDefault(); // Prevent form submission
+            // Add donation processing logic here if needed
+            $('#energyDonationModal').modal('hide'); // Hide the donation modal
+            $('#celebrationModal').modal('show'); // Show celebration modal
+        };
+
+        // Handle Money Donation Form Submission
+        document.getElementById('moneyDonationForm').onsubmit = function(e) {
+            e.preventDefault(); // Prevent form submission
+            // Add donation processing logic here if needed
+            $('#moneyDonationModal').modal('hide'); // Hide the donation modal
+            $('#celebrationModal').modal('show'); // Show celebration modal
+        };
+    </script>
+</body>
+</html>

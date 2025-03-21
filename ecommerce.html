@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoHub - Renewable and Sustainable Products</title>
+    <link rel="stylesheet" href="ecommerce.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        a{
+            color:black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav id="sidebar" class="p-4">
+            <h3 class="text-light"><a href="/main.html">ECOHUB</a></h3>
+            <ul id="sidebar-nav" class="nav flex-column">
+              <li class="nav-item mb-3">
+                  <a href="analysis.html" class="nav-link text-light">Analysis</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="source.html" class="nav-link text-light">Source</a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="bill.html" class="nav-link text-light">Bill</a>
+                </li>
+                <li class="nav-item mb-3">
+                  <a href="education.html" class="nav-link text-light ">Education</a>
+              </li>
+              <li class="nav-item mb-3">
+                <a href="maintenance.html" class="nav-link text-light ">Maintenance</a>
+            </li>
+              <li class="nav-item mb-3">
+                <a href="cfc.html" class="nav-link text-light">Carbon Footprint</a>
+              </li>
+              <li class="nav-item mb-3">
+                <a href="donate.html" class="nav-link text-light">Donate</a>
+            </li>
+              <li class="nav-item mb-3">
+                <a href="ecommerce.html" class="nav-link text-light active">E-commerce</a>
+              </li>
+            </ul>
+          </nav>
+    </header>
+    
+    <main>
+        <section id="banner" class="banner-section">
+            <div id="text" class="container">
+                <h1>Welcome to EcoHub Store</h1>
+                <p>Explore our range of sustainable and renewable products</p>
+                <a href="#products" class="shop-now-btn">Shop Now</a>
+            </div>
+        </section>
+    
+        
+    
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="container" id="product-container">
+                <h2>Our Products</h2>
+    
+                <div class="cart-icon" onclick="toggleCart()">
+                    <img src="http://icons.iconarchive.com/icons/iconsmind/outline/512/Shopping-Cart-icon.png" alt="Cart"/>
+                    <span id="cart-count">0</span>
+                </div>
+    
+                <div class="product-grid">
+                    <!-- Existing Products -->
+                    <div class="product">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.A_3B9pS6yTCoehKN2eJs6gHaFj&pid=Api&P=0&h=180" alt="Solar Panel">
+                        <h3>Solar Panel</h3>
+                        <p>High-efficiency solar panels for clean energy production.</p>
+                        <p class="price">₹299.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Solar Panel', 299.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://www.electricrate.com/wp-content/uploads/2023/02/wind-power-for-homes.jpg" alt="Wind Turbine">
+                        <h3>Wind Turbine</h3>
+                        <p>Advanced wind turbines to harness wind power.</p>
+                        <p class="price">₹499.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Wind Turbine', 499.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="/Images/batteryStorage.jpg" alt="Battery Storage">
+                        <h3>Battery Storage</h3>
+                        <p>Reliable battery storage for your renewable energy needs.</p>
+                        <p class="price">₹199.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Battery Storage', 199.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse4.mm.bing.net/th?id=OIP.9I7mqitrCKlwzh_TP4cWFAHaE8&pid=Api&P=0&h=180" alt="Eco Bulb">
+                        <h3>Eco Bulb</h3>
+                        <p>Energy-efficient bulbs for a greener home.</p>
+                        <p class="price">₹19.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Eco Bulb', 19.99)">Add to Cart</button>
+                    </div>
+    
+                    <!-- New Products -->
+                    <div class="product">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.87UjB1J_mpDmJjyP6SuhdQHaFi&pid=Api&P=0&h=180" alt="Solar Inverter">
+                        <h3>Solar Inverter</h3>
+                        <p>Convert solar energy into usable electricity for your home.</p>
+                        <p class="price">₹399.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Solar Inverter', 399.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse4.mm.bing.net/th?id=OIP.ty6ysPXntjKlz_ZOB58cUQHaFf&pid=Api&P=0&h=180" alt="Solar Water Heater">
+                        <h3>Solar Water Heater</h3>
+                        <p>Eco-friendly water heaters powered by solar energy.</p>
+                        <p class="price">₹349.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Solar Water Heater', 349.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.IVzEOEXxVZ69-HWfFazXOgHaE8&pid=Api&P=0&h=180" alt="Electric Bike Chargers">
+                        <h3>Electric Bike Charger</h3>
+                        <p>Energy-efficient electric bike charger for green commuting.</p>
+                        <p class="price">₹999.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Electric Bike', 999.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse2.mm.bing.net/th?id=OIP.fmk8xmEQYVZgsSCWj1YP3wAAAA&pid=Api&P=0&h=180" alt="Smart Thermostat">
+                        <h3>Smart Thermostat</h3>
+                        <p>Energy-saving thermostats for efficient heating and cooling.</p>
+                        <p class="price">₹129.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Smart Thermostat', 129.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://content.instructables.com/ORIG/FQM/W4U6/G8QJDXBG/FQMW4U6G8QJDXBG.jpg?auto=webp&frame=1&width=2100" alt="Rainwater Collection Barrel">
+                        <h3>Rainwater Collection Barrel</h3>
+                        <p>Eco-friendly way to collect and use rainwater for gardening.</p>
+                        <p class="price">₹89.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Rainwater Collection Barrel', 89.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.0aM-bpD6qMJv7MW_rOxcewHaE7&pid=Api&P=0&h=180" alt="Compost Bin">
+                        <h3>Compost Bin</h3>
+                        <p>Turn kitchen scraps into rich compost for your garden.</p>
+                        <p class="price">₹49.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Compost Bin', 49.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="/Images/SolarCharger.jpg" alt="Solar Charger">
+                        <h3>Solar Charger</h3>
+                        <p>Portable solar charger for eco-friendly on-the-go power.</p>
+                        <p class="price">₹59.99</p>
+                        <button class="add-to-cart" onclick="addToCart('Solar Charger', 59.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://tse4.mm.bing.net/th?id=OIP.UQ0ZYR2L9Cdrb1a7TViRygAAAA&pid=Api&P=0&h=180" alt="LED Light Set">
+                        <h3>LED Light Set</h3>
+                        <p>Energy-efficient LED lights for sustainable lighting solutions.</p>
+                        <p class="price">₹39.99</p>
+                        <button class="add-to-cart" onclick="addToCart('LED Light Set', 39.99)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Cart Modal -->
+        <div id="cart-modal" class="cart-modal">
+            <div class="cart-modal-content">
+                <span class="close" onclick="toggleCart()">&times;</span>
+                <h2>Shopping Cart</h2>
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-total">
+                    <p> <span id="cart-total">0.00</span></p>
+                    <button class="buy-now" onclick="buyNowFromCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EcoHub - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="ecommerce.js"></script>
+</body>
+</html>
